@@ -1,0 +1,20 @@
+exports[`test cjs output 1`] = `
+
+> cjs@1.0.0 test
+> node index.cjs
+
+{
+  OmitAssetPlugin: [Function: OmitAssetPlugin],
+  default: [Function: OmitAssetPlugin]
+}
+
+`;
+
+exports[`test esm output 1`] = `
+
+> esm@1.0.0 test
+> node index.mjs
+
+[Function: OmitAssetPlugin]
+
+`;
