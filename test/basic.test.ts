@@ -2,7 +2,7 @@ import test from "node:test";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import webpack, { Compiler, Configuration, Stats, Compilation } from "webpack";
+import webpack, { Compiler, Configuration, Stats } from "webpack";
 import { createFsFromVolume, Volume } from "memfs";
 import { Union } from "unionfs";
 
@@ -17,9 +17,12 @@ class EmitAssetPlugin {
 
 	apply(compiler: Compiler) {
 		compiler.hooks.thisCompilation.tap("EmitAssetPlugin", (compilation) => {
-			compilation.hooks.processAssets.tap({ name: "EmitAssetPlugin", stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONS }, () => {
-				compilation.emitAsset(this.filename, new compiler.webpack.sources.RawSource(this.content));
-			});
+			compilation.hooks.processAssets.tap(
+				{ name: "EmitAssetPlugin", stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS },
+				() => {
+					compilation.emitAsset(this.filename, new compiler.webpack.sources.RawSource(this.content));
+				}
+			);
 		});
 	}
 }
