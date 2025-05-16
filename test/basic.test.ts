@@ -31,6 +31,9 @@ async function compile(entry: string, options: Configuration = {}) {
 	const outDir = path.resolve(__dirname, "dist");
 
 	const compiler = webpack({
+		infrastructureLogging: {
+			level: "verbose",
+		},
 		mode: "none",
 		target: "node",
 		context: path.resolve(__dirname, "fixtures"),
@@ -51,7 +54,7 @@ async function compile(entry: string, options: Configuration = {}) {
 	compiler.outputFileSystem = outputFileSystem;
 	compiler.inputFileSystem = inputFileSystem;
 	compiler.resolverFactory.hooks.resolveOptions.for("normal").tap("OmitAssetPlugin", (resolveOptions) => {
-		resolveOptions.fileSystem = inputFileSystem;
+		// resolveOptions.fileSystem = inputFileSystem;
 		return resolveOptions;
 	});
 
