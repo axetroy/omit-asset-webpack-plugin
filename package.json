@@ -1,6 +1,6 @@
 {
 	"name": "omit-asset-webpack-plugin",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": false,
 	"description": "A webpack plugin to omit assets from the build output.",
 	"sideEffects": false,
